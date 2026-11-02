@@ -59,7 +59,12 @@ function sanitize(items: AnalysisItem[], lib: Library): AnalysisItem[] {
   return out;
 }
 
-async function analyze(req: ComposeRequest, lib: Library, analyzer?: MetaphorAnalyzer): Promise<MetaphorAnalysis> {
+async function analyze(
+  req: ComposeRequest,
+  lib: Library,
+  analyzer: MetaphorAnalyzer | undefined,
+  frame: { width: number; height: number },
+): Promise<MetaphorAnalysis> {
   if (req.mode === 'names') {
     const parsed = parseComponentNames(req.text, lib);
     if (parsed.items.length === 0) {
@@ -82,7 +87,7 @@ async function analyze(req: ComposeRequest, lib: Library, analyzer?: MetaphorAna
   }
   if (!analyzer) return analyzeByKeywords(req.text, lib);
   try {
-    const res = await analyzer.analyze(req.text, lib);
+    const res = await analyzer.analyze(req.text, lib, frame);
     const items = sanitize(res.items, lib);
     if (items.length === 0) throw new Error('анализатор не выбрал ни одного объекта из библиотеки');
     return { ...res, items };
@@ -98,11 +103,10 @@ async function analyze(req: ComposeRequest, lib: Library, analyzer?: MetaphorAna
  */
 export async function composeFromText(req: ComposeRequest, lib: Library, analyzer?: MetaphorAnalyzer): Promise<ComposeResult> {
   if (!req.text?.trim()) throw new ComposeError('Введите метафору, заголовок или названия объектов.', 'EMPTY_TEXT');
-  const analysis = await analyze(req, lib, analyzer);
-
   const format = req.formatId ? formatById(req.formatId) : undefined;
   const width = req.width ?? format?.width ?? 1000;
   const height = req.height ?? format?.height ?? 1000;
+  const analysis = await analyze(req, lib, analyzer, { width, height });
   const wanted = Math.max(1, Math.min(8, req.variants ?? 4));
   const modes: LayoutMode[] = !req.layout || req.layout === 'auto' ? ['compact', 'offset', 'heading'] : [req.layout];
   const items: LayoutItemInput[] = analysis.items.map((i) => ({

@@ -24,7 +24,13 @@ export interface MetaphorAnalysis {
 }
 
 /** Порт: анализатор метафор (Claude в инфраструктуре сервера или офлайн-анализатор ядра). */
+export interface AnalysisContext {
+  /** Кадр в единицах L — чтобы не перегружать узкие форматы крупными объектами. */
+  width: number;
+  height: number;
+}
+
 export interface MetaphorAnalyzer {
   readonly name: string;
-  analyze(text: string, lib: Library): Promise<MetaphorAnalysis>;
+  analyze(text: string, lib: Library, context?: AnalysisContext): Promise<MetaphorAnalysis>;
 }
