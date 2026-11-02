@@ -6,3 +6,6 @@ export * from './palette/color.ts';
 export * from './palette/recolor.ts';
 export * from './palette/import.ts';
 export * from './layout/mask.ts';
+export * from './composition/model.ts';
+export * from './composition/zorder.ts';
+export * from './composition/render.ts';
