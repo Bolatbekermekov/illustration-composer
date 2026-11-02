@@ -1,0 +1,10 @@
+{
+  "name": "@ic/core",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Доменная логика: библиотека, палитры и перекраска, композиция, авто-раскладка, сериализация в SVG",
+  "exports": {
+    ".": "./src/index.ts"
+  }
+}

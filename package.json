@@ -1,0 +1,29 @@
+{
+  "name": "illustration-composer",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Сервис автоматической сборки композиций из векторной библиотеки иллюстраций (SVG)",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "library:build": "npm run build --workspace @ic/extractor",
+    "dev": "npm run dev --workspace @ic/server & npm run dev --workspace @ic/web",
+    "build": "npm run build --workspace @ic/web",
+    "start": "npm run build && npm run start --workspace @ic/server",
+    "test": "vitest run",
+    "test:e2e": "npm run e2e --workspace @ic/web",
+    "typecheck": "tsc -p packages/core && tsc -p packages/extractor && tsc -p apps/server && tsc -p apps/web"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "~5.9.3",
+    "vitest": "^4.1.12"
+  }
+}

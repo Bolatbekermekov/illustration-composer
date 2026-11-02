@@ -1,0 +1,15 @@
+{
+  "name": "@ic/extractor",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Сборка SVG-библиотеки из экспортов Figma: нарезка объектов, нормализация цветов, маски силуэтов, превью",
+  "scripts": {
+    "build": "tsx src/cli.ts"
+  },
+  "dependencies": {
+    "@ic/core": "*",
+    "@resvg/resvg-js": "2.6.2",
+    "@xmldom/xmldom": "0.9.12"
+  }
+}
