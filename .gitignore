@@ -11,3 +11,4 @@ playwright-report/
 .vite/
 tmp/
 data/
+apps/web/dist/
