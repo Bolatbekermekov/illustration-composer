@@ -114,3 +114,17 @@ test('палитра: загрузка SVG-сетки из Figma перекра�
   await expect(page.getByRole('radio', { name: 'Мята из Figma' })).toHaveAttribute('aria-checked', 'true');
   expect(await items(page).first().innerHTML()).toContain('#6D7BFC');
 });
+
+test('открытие экспортированного SVG: композиция восстанавливается, чужие объекты отбрасываются', async ({ page }) => {
+  await compose(page, 'По названиям', 'лампа, пазл');
+  const [download] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Скачать SVG' }).click()]);
+  const svg = readFileSync(await download.path(), 'utf8');
+  // Подмешиваем несуществующий объект в метаданные — он должен быть отброшен.
+  const tampered = svg.replace('&quot;items&quot;:[', '&quot;items&quot;:[{&quot;uid&quot;:&quot;x&quot;,&quot;objectId&quot;:&quot;rocket&quot;,&quot;state&quot;:&quot;main&quot;,&quot;x&quot;:1,&quot;y&quot;:1,&quot;rotation&quot;:0},');
+  await page.getByRole('button', { name: 'Очистить' }).click();
+  await expect(items(page)).toHaveCount(0);
+  await page.locator('header input[type=file]').setInputFiles({ name: 'export.svg', mimeType: 'image/svg+xml', buffer: Buffer.from(tampered) });
+  await expect(items(page)).toHaveCount(2);
+  const ids = await items(page).evaluateAll((els) => els.map((e) => e.getAttribute('data-object')).sort());
+  expect(ids).toEqual(['lamp', 'puzzle']);
+});

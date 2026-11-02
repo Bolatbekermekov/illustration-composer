@@ -1,0 +1,43 @@
+{
+  "request": {
+    "mode": "names",
+    "text": "телефон, наушники, цветы на фоне",
+    "formatId": "square",
+    "schemeId": "mint",
+    "size": "S"
+  },
+  "analysis": {
+    "source": "names",
+    "confidence": "high",
+    "unknown": [],
+    "summary": "",
+    "items": [
+      {
+        "objectId": "phone",
+        "state": "main",
+        "lockState": false,
+        "role": "hero",
+        "reason": "указано пользователем"
+      },
+      {
+        "objectId": "headphones",
+        "state": "main",
+        "lockState": false,
+        "role": "support",
+        "reason": "указано пользователем"
+      },
+      {
+        "objectId": "flowers",
+        "state": "background",
+        "lockState": true,
+        "role": "background",
+        "reason": "указано пользователем"
+      }
+    ]
+  },
+  "layout": {
+    "mode": "compact",
+    "score": 0,
+    "start": "heuristic"
+  }
+}

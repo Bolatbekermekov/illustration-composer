@@ -1,0 +1,40 @@
+{
+  "request": {
+    "mode": "metaphor",
+    "text": "Командная работа решает всё",
+    "formatId": "tall",
+    "schemeId": "mint",
+    "size": "L"
+  },
+  "analysis": {
+    "items": [
+      {
+        "objectId": "puzzle",
+        "state": "main",
+        "role": "hero",
+        "reason": "Соединённые детали — команда, сотрудничество, общее решение"
+      },
+      {
+        "objectId": "folder",
+        "state": "main",
+        "role": "support",
+        "reason": "Общий проект и рабочий контекст, поверхность для пазлов"
+      },
+      {
+        "objectId": "lamp",
+        "state": "background",
+        "role": "background",
+        "reason": "Атмосфера рабочего места и совместных идей"
+      }
+    ],
+    "summary": "Пазлы как символ командной работы лежат на папке с проектом — команда собирает решение вместе; лампа на фоне добавляет атмосферу общих идей.",
+    "confidence": "high",
+    "source": "claude",
+    "model": "claude-opus-5-5"
+  },
+  "layout": {
+    "mode": "compact",
+    "score": 0,
+    "start": "random"
+  }
+}

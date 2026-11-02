@@ -1,0 +1,46 @@
+{
+  "request": {
+    "mode": "metaphor",
+    "text": "Ночь перед экзаменом",
+    "formatId": "square",
+    "schemeId": "lavender",
+    "size": "L"
+  },
+  "analysis": {
+    "items": [
+      {
+        "objectId": "lamp",
+        "state": "main",
+        "role": "hero",
+        "reason": "Ночь, свет над столом, работа допоздна"
+      },
+      {
+        "objectId": "book",
+        "state": "main",
+        "role": "support",
+        "reason": "Учёба и материал для экзамена"
+      },
+      {
+        "objectId": "pen",
+        "state": "main",
+        "role": "support",
+        "reason": "Конспекты и шпаргалки, лежит на книге"
+      },
+      {
+        "objectId": "headphones",
+        "state": "background",
+        "role": "background",
+        "reason": "Концентрация и тишина ночной подготовки"
+      }
+    ],
+    "summary": "Подготовка к экзамену допоздна: лампа освещает раскрытую книгу с ручкой для конспектов — атмосфера ночной зубрёжки.",
+    "confidence": "high",
+    "source": "claude",
+    "model": "claude-opus-5-5"
+  },
+  "layout": {
+    "mode": "offset",
+    "score": 0.031,
+    "start": "random"
+  }
+}

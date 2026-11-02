@@ -96,6 +96,9 @@ button:disabled {
   .scheme-chip .label {
     display: none;
   }
+  .scheme-chip.active .label {
+    display: inline;
+  }
   .scheme-chip {
     padding: 0 8px;
   }

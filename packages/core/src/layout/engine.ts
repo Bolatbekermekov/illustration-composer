@@ -202,8 +202,10 @@ function stateConfigs(req: LayoutRequest, lib: Library): Array<{ items: LayoutIt
   const mains = req.items.map((it, i) => ({ it, i })).filter(({ it }) => it.state === 'main');
   if (mains.length < 2) return configs;
   const first = mains[0]?.i;
+  const kind = (id: string) => lib.objects.find((o) => o.id === id)?.kind ?? 'flat';
+  // Фоном дизайнер делает только крупные объекты (книга, папка, лампа, цветы, наушники), не мелкие плоские.
   const demotable = mains
-    .filter(({ it, i }) => i !== first && !it.lockState && it.role !== 'hero')
+    .filter(({ it, i }) => i !== first && !it.lockState && it.role !== 'hero' && kind(it.objectId) !== 'flat')
     .sort((a, b) => area(b.it.objectId) - area(a.it.objectId));
   const frameArea = req.width * req.height;
   for (const d of demotable.slice(0, mains.length >= 3 ? 2 : 1)) {

@@ -13,12 +13,13 @@
   },
   "scripts": {
     "library:build": "npm run build --workspace @ic/extractor",
-    "dev": "npm run dev --workspace @ic/server & npm run dev --workspace @ic/web",
+    "dev": "node scripts/dev.mjs",
     "build": "npm run build --workspace @ic/web",
     "start": "npm run build && npm run start --workspace @ic/server",
     "test": "vitest run",
     "test:e2e": "npm run e2e --workspace @ic/web",
-    "typecheck": "tsc -p packages/core && tsc -p packages/extractor && tsc -p apps/server && tsc -p apps/web"
+    "typecheck": "tsc -p packages/core && tsc -p packages/extractor && tsc -p apps/server && tsc -p apps/web",
+    "examples": "tsx scripts/examples.ts"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

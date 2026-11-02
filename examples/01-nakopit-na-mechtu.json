@@ -1,0 +1,46 @@
+{
+  "request": {
+    "mode": "metaphor",
+    "text": "Как накопить на мечту",
+    "formatId": "wide",
+    "schemeId": "peach",
+    "size": "L"
+  },
+  "analysis": {
+    "items": [
+      {
+        "objectId": "coin",
+        "state": "main",
+        "role": "hero",
+        "reason": "Накопления, сбережения — шаг за шагом к мечте"
+      },
+      {
+        "objectId": "wallet",
+        "state": "main",
+        "role": "support",
+        "reason": "Личный бюджет и контроль расходов"
+      },
+      {
+        "objectId": "coin",
+        "state": "main",
+        "role": "support",
+        "reason": "Вторая монета усиливает идею роста накоплений"
+      },
+      {
+        "objectId": "flowers",
+        "state": "background",
+        "role": "background",
+        "reason": "Мечта, радость и подарок себе как цель"
+      }
+    ],
+    "summary": "Монеты лежат на кошельке как символ постепенных накоплений, а цветы на фоне намекают на мечту и радость от её исполнения.",
+    "confidence": "high",
+    "source": "claude",
+    "model": "claude-opus-5-5"
+  },
+  "layout": {
+    "mode": "compact",
+    "score": 0,
+    "start": "random"
+  }
+}

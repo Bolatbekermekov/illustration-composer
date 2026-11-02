@@ -1,4 +1,4 @@
-import { readCompositionFromSvg, renderComposition, type Library } from '@ic/core';
+import { newUid, readCompositionFromSvg, renderComposition, type Composition, type Library } from '@ic/core';
 import { useRef, useState } from 'react';
 import { downloadText } from '../render.ts';
 import { useEditor } from '../store.ts';
@@ -138,7 +138,7 @@ export function TopBar({
             const file = e.target.files?.[0];
             e.target.value = '';
             if (!file) return;
-            const comp = readCompositionFromSvg(await file.text());
+            const comp = sanitize(readCompositionFromSvg(await file.text()), lib);
             if (comp) {
               loadComposition(comp);
               showToast('Композиция открыта для редактирования');
@@ -169,4 +169,37 @@ export function TopBar({
       </div>
     </header>
   );
+}
+
+/** Данные из чужого файла не доверяем: только известные объекты, конечные числа, допустимые значения. */
+function sanitize(c: Composition | null, lib: Library): Composition | null {
+  if (!c) return null;
+  const num = (v: unknown, fallback: number) => (typeof v === 'number' && Number.isFinite(v) ? v : fallback);
+  const known = new Set(lib.objects.map((o) => o.id));
+  const width = Math.min(4000, Math.max(200, num(c.width, 1000)));
+  const height = Math.min(4000, Math.max(200, num(c.height, 1000)));
+  const items = (Array.isArray(c.items) ? c.items : [])
+    .filter((i) => i && known.has(i.objectId))
+    .slice(0, 40)
+    .map((i) => ({
+      uid: newUid(),
+      objectId: i.objectId,
+      state: i.state === 'background' ? ('background' as const) : ('main' as const),
+      x: num(i.x, width / 2),
+      y: num(i.y, height / 2),
+      rotation: num(i.rotation, 0),
+      ...(i.flipX ? { flipX: true } : {}),
+    }));
+  if (items.length === 0) return null;
+  const formatId = lib.formats.find((f) => f.id === c.formatId && f.width === width && f.height === height)?.id;
+  return {
+    width,
+    height,
+    ...(formatId ? { formatId } : {}),
+    size: c.size === 'S' ? 'S' : 'L',
+    schemeId: typeof c.schemeId === 'string' ? c.schemeId : lib.baseSchemeId,
+    background: c.background === 'bg2' || c.background === 'bg3' ? c.background : 'bg1',
+    decor: c.decor === 'plane' || c.decor === 'none' ? c.decor : 'strokes',
+    items,
+  };
 }
