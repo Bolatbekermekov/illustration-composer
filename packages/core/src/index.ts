@@ -12,3 +12,8 @@ export * from './composition/render.ts';
 export * from './layout/score.ts';
 export * from './layout/engine.ts';
 export { GRID } from './layout/sprites.ts';
+export * from './text/normalize.ts';
+export * from './text/names.ts';
+export * from './text/analysis.ts';
+export * from './text/keyword-analyzer.ts';
+export * from './app/compose.ts';
