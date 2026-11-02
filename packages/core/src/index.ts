@@ -9,3 +9,6 @@ export * from './layout/mask.ts';
 export * from './composition/model.ts';
 export * from './composition/zorder.ts';
 export * from './composition/render.ts';
+export * from './layout/score.ts';
+export * from './layout/engine.ts';
+export { GRID } from './layout/sprites.ts';

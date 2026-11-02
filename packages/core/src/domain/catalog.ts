@@ -26,7 +26,7 @@ export const CATALOG: readonly CatalogDefinition[] = [
     id: 'phone',
     name: 'Телефон',
     figmaNames: ['Телефон'],
-    kind: 'item',
+    kind: 'flat',
     aliases: ['телефон', 'смартфон', 'мобильный', 'мобильник', 'айфон', 'гаджет', 'phone', 'smartphone', 'mobile'],
     meanings: [
       'связь', 'звонок', 'сообщение', 'мессенджер', 'приложение', 'мобильное приложение', 'онлайн', 'интернет',
@@ -38,7 +38,7 @@ export const CATALOG: readonly CatalogDefinition[] = [
     id: 'puzzle',
     name: 'Пазлы',
     figmaNames: ['Пазлы'],
-    kind: 'item',
+    kind: 'flat',
     aliases: ['пазл', 'пазлы', 'головоломка', 'кусочек пазла', 'деталь пазла', 'puzzle', 'jigsaw'],
     meanings: [
       'решение', 'задача', 'проблема', 'логика', 'стратегия', 'командная работа', 'команда', 'сотрудничество',
@@ -50,7 +50,7 @@ export const CATALOG: readonly CatalogDefinition[] = [
     id: 'coin',
     name: 'Монета',
     figmaNames: ['Монета'],
-    kind: 'item',
+    kind: 'flat',
     aliases: ['монета', 'монетка', 'монеты', 'рубль', 'копейка', 'coin', 'cash'],
     meanings: [
       'деньги', 'финансы', 'экономия', 'сбережения', 'накопления', 'инвестиции', 'доход', 'прибыль', 'кэшбэк',
@@ -63,7 +63,7 @@ export const CATALOG: readonly CatalogDefinition[] = [
     id: 'headphones',
     name: 'Наушники',
     figmaNames: ['Наушники'],
-    kind: 'item',
+    kind: 'standing',
     aliases: ['наушники', 'гарнитура', 'headphones', 'earphones', 'headset'],
     meanings: [
       'музыка', 'звук', 'аудио', 'подкаст', 'слушать', 'плейлист', 'концентрация', 'фокус', 'тишина', 'отдых',
@@ -75,7 +75,7 @@ export const CATALOG: readonly CatalogDefinition[] = [
     id: 'lamp',
     name: 'Лампа',
     figmaNames: ['Лампа'],
-    kind: 'item',
+    kind: 'standing',
     aliases: ['лампа', 'настольная лампа', 'светильник', 'торшер', 'lamp', 'light'],
     meanings: [
       'идея', 'озарение', 'вдохновение', 'креатив', 'работа допоздна', 'ночь', 'вечер', 'рабочее место', 'фокус',
@@ -87,7 +87,7 @@ export const CATALOG: readonly CatalogDefinition[] = [
     id: 'flowers',
     name: 'Цветы',
     figmaNames: [],
-    kind: 'item',
+    kind: 'standing',
     aliases: ['цветы', 'цветок', 'букет', 'тюльпаны', 'тюльпан', 'ваза', 'flowers', 'bouquet', 'tulips'],
     meanings: [
       'подарок', 'праздник', 'поздравление', 'забота', 'любовь', 'весна', '8 марта', 'день рождения', 'красота',
@@ -99,7 +99,7 @@ export const CATALOG: readonly CatalogDefinition[] = [
     id: 'wallet',
     name: 'Кошелёк',
     figmaNames: ['Кошелек', 'Кошелёк'],
-    kind: 'item',
+    kind: 'flat',
     aliases: ['кошелек', 'кошелёк', 'бумажник', 'портмоне', 'wallet', 'purse'],
     meanings: [
       'деньги', 'финансы', 'оплата', 'покупки', 'шопинг', 'бюджет', 'расходы', 'траты', 'карта', 'банк',
@@ -123,7 +123,7 @@ export const CATALOG: readonly CatalogDefinition[] = [
     id: 'pen',
     name: 'Ручка',
     figmaNames: ['Ручка'],
-    kind: 'item',
+    kind: 'flat',
     aliases: ['ручка', 'авторучка', 'перо', 'карандаш', 'pen', 'pencil'],
     meanings: [
       'подпись', 'договор', 'письмо', 'заметки', 'писать', 'текст', 'копирайтинг', 'редактура', 'автор',

@@ -67,8 +67,13 @@ export interface ObjectVariant {
   mask: SilhouetteMask;
 }
 
-/** Поверхность (на неё можно «положить» другой предмет) или предмет. */
-export type ObjectKind = 'surface' | 'item';
+/**
+ * Как объект «стоит» в изометрической сцене:
+ * surface — поверхность, на которую можно положить плоский предмет (книга, папка);
+ * flat — плоский предмет, может лежать на поверхности (телефон, пазл, монета, кошелёк, ручка);
+ * standing — объёмный предмет, стоит рядом (лампа, цветы, наушники).
+ */
+export type ObjectKind = 'surface' | 'flat' | 'standing';
 
 export interface CatalogEntry {
   id: string;

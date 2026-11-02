@@ -25,7 +25,7 @@ function onSilhouette(surface: CompositionItem, obj: LibraryObject, px: number, 
 /**
  * Порядок слоёв для изометрической сцены:
  * фоновые объекты — позади главных; внутри группы ближе к зрителю тот, у кого ниже «линия основания»;
- * предмет, лежащий на поверхности (книга, папка), всегда рисуется поверх неё.
+ * плоский предмет, лежащий на поверхности (книга, папка), всегда рисуется поверх неё.
  */
 export function autoZOrder(items: CompositionItem[], lib: Library, _size: SizeClass): CompositionItem[] {
   const objects = new Map(lib.objects.map((o) => [o.id, o]));
@@ -43,7 +43,7 @@ export function autoZOrder(items: CompositionItem[], lib: Library, _size: SizeCl
     for (const s of surfaces) {
       const so = objects.get(s.objectId) as LibraryObject;
       for (const a of [...sorted]) {
-        if (a === s || a.state !== 'main' || objects.get(a.objectId)?.kind === 'surface') continue;
+        if (a === s || a.state !== 'main' || objects.get(a.objectId)?.kind !== 'flat') continue;
         if (!onSilhouette(s, so, a.x, a.y)) continue;
         const ia = sorted.indexOf(a);
         const is = sorted.indexOf(s);

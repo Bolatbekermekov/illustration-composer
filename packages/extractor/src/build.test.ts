@@ -41,8 +41,8 @@ describe('objects', () => {
   it('keeps Figma sizes: L phone is 796.5 × 461.7 and S is half of it', () => {
     const l = variant('phone', 'L', 'main').box;
     const s = variant('phone', 'S', 'main').box;
-    expect(l.width).toBeCloseTo(796.5, 0);
-    expect(l.height).toBeCloseTo(461.7, 0);
+    expect(Math.abs(l.width - 796.5)).toBeLessThan(2);
+    expect(Math.abs(l.height - 461.7)).toBeLessThan(2);
     expect(s.width / l.width).toBeCloseTo(0.5, 1);
   });
 
@@ -102,6 +102,12 @@ describe('objects', () => {
       for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) diff++;
       expect(diff, `${id}/${size}`).toBe(0);
     }
+  });
+
+  it('ignores stray specks in the source vectors when measuring the visual box (coin)', () => {
+    const coin = variant('coin', 'L', 'main');
+    expect(coin.box.height).toBeLessThan(150);
+    expect(coin.markup).toContain('4271.6'); // сама «пылинка» остаётся в разметке — объект не меняем
   });
 
   it('builds silhouette masks that cover a plausible share of the box', () => {

@@ -12,7 +12,7 @@ import {
 import type { Element } from '@xmldom/xmldom';
 import { baseName, descendants, elementChildren, serialize, type FigmaSvg } from './figma.ts';
 import { cleanMarkup } from './markup.ts';
-import { bboxOf, renderMask } from './raster.ts';
+import { bboxOf, renderMask, visualBox } from './raster.ts';
 
 export const MASK_CELL = 8;
 
@@ -67,8 +67,9 @@ export function extractObjects(fig: FigmaSvg, size: SizeClass, referenceAspects?
     const name = baseName(el);
     if (name === 'Фон' || isPalette(el)) continue;
     const markup = cleanMarkup(el);
-    const box = bboxOf(serialize(el), fig.viewBox);
-    if (!box || box.width < 40 || box.height < 40) continue;
+    const geom = bboxOf(serialize(el), fig.viewBox);
+    if (!geom || geom.width < 40 || geom.height < 40) continue;
+    const box = visualBox(markup, geom);
     candidates.push({ el, name, objectId: resolveByName(el), state: stateFromColors(markup), box, markup });
   }
 
