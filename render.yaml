@@ -1,0 +1,24 @@
+# Render Blueprint: публичное демо сервиса (https://render.com/docs/blueprint-spec)
+services:
+  - type: web
+    name: illustration-composer
+    runtime: node
+    plan: free
+    region: frankfurt
+    branch: main
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start --workspace @ic/server
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: HOST
+        value: 0.0.0.0
+      - key: ANTHROPIC_MODEL
+        value: claude-opus-5-5
+      - key: ANTHROPIC_EFFORT
+        value: low
+      - key: LLM_RATE_LIMIT
+        value: "60"
+      - key: ANTHROPIC_API_KEY
+        sync: false

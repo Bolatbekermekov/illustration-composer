@@ -187,3 +187,7 @@ apps/web               редактор (Zustand + SVG-холст), e2e-тест
 * Импорт новой библиотеки сейчас — командой `npm run library:build`; можно добавить загрузку экспорта
   Figma через интерфейс.
 * Публичный деплой не делался: запуск локально одной командой `npm start`.
+
+## Деплой
+
+Публичное демо развёрнуто на Render по `render.yaml` (Blueprint): сборка `npm ci && npm run build`, запуск `npm run start --workspace @ic/server`, проверка `/api/health`. Ключ `ANTHROPIC_API_KEY` задаётся в переменных окружения Render, в репозитории его нет. Обращения к модели ограничены (`LLM_RATE_LIMIT` за `LLM_RATE_WINDOW_MS`), сверх лимита сервис переключается на офлайн-анализ.
