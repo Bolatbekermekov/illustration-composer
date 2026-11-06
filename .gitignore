@@ -13,5 +13,3 @@ tmp/
 data/
 apps/web/dist/
 .vercel/
-.vercel
-.env*
