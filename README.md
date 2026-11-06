@@ -190,4 +190,4 @@ apps/web               редактор (Zustand + SVG-холст), e2e-тест
 
 ## Деплой
 
-Публичное демо развёрнуто на Render по `render.yaml` (Blueprint): сборка `npm ci && npm run build`, запуск `npm run start --workspace @ic/server`, проверка `/api/health`. Ключ `ANTHROPIC_API_KEY` задаётся в переменных окружения Render, в репозитории его нет. Обращения к модели ограничены (`LLM_RATE_LIMIT` за `LLM_RATE_WINDOW_MS`), сверх лимита сервис переключается на офлайн-анализ.
+Публичное демо развёрнуто на Vercel. `scripts/vercel-build.mjs` собирает результат по Build Output API: фронтенд уходит статикой, API собирается esbuild в одну Node-функцию, рядом с ней лежит `library.json`. Ключ `ANTHROPIC_API_KEY` хранится в переменных окружения Vercel, в репозитории его нет. Обращения к модели ограничены (`LLM_RATE_LIMIT` за `LLM_RATE_WINDOW_MS`), сверх лимита сервис переключается на офлайн-анализ. Загруженные палитры на serverless хранятся во временном каталоге инстанса и могут сброситься. Для постоянного хранения есть `render.yaml`: обычный Node-сервер на Render.

@@ -12,3 +12,4 @@ playwright-report/
 tmp/
 data/
 apps/web/dist/
+.vercel/
